@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="./resume_builder.js" type="text/Javascript"></script>
+    <link rel="stylesheet" href="./list.html">
+    <style>
+        .container {
+            background-color: rgb(162, 208, 246);
+        }
+
+        .center {
+            margin-left: 250px;
+        }
+
+        .center1 {
+            margin-left: 250px;
+        }
+
+        .g {
+            width: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container p-5">
+        <h1 class="resume text-center mb-4"><u>Resume</u></h1>
+        <div class="center">
+            <div class="mb-3 row">
+                <label for="inputPassword" class="col-sm-2 col-form-label">
+                    <h6>Name :</h6>
+                </label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="name" onkeyup="add(this,'name',null)">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="inputPassword" class="col-sm-2 col-form-label">
+                    <h6>Email Id :</h6>
+                </label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="emailid" onkeyup="add(this,'emailid',null)">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="inputPassword" class="col-sm-2 col-form-label">
+                    <h6>Contact Number :</h6>
+                </label>
+                <div class="col-sm-6">
+                    <input type="number" class="form-control" id="phone_number" onkeyup="add(this,'phone_number',null)">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="inputPassword" class="col-sm-2 col-form-label">
+                    <h6>Objective :</h6>
+                </label>
+                <div class="col-sm-6">
+                    <textarea class="form-control" id="objective" rows="4"
+                        onkeyup="add(this,'objective',null)"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="center1">
+            <h3><u>Personal Details:</u></h3>
+            <div class="mb-3 row">
+                <label for="inputPassword" class="col-sm-2 col-form-label">
+                    <h6>Father Name :</h6>
+                </label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="fathername"
+                        onkeyup="add(this,'father_name','personal_details')">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="inputPassword" class="col-sm-2 col-form-label">
+                    <h6>Mother Name :</h6>
+                </label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="mothername"
+                        onkeyup="add(this,'mother_name','personal_details')">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="inputPassword" class="col-sm-2 col-form-label">
+                    <h6>Date of Birth:</h6>
+                </label>
+                <div class="col-sm-6">
+                    <input type="date" class="form-control" id="dateofbirth"
+                        onkeyup="add(this,'date_of_birth','personal_details')">
+                </div>
+            </div>
+            <div class="d-flex">
+                <h6>Marital status :</h6>
+                <div class="form-check form-check-inline ms-5">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="married" onclick="add(this,'married','marital_status')"
+                        value="yes">
+                    <label class="form-check-label" for="inlineRadio1">YES</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="married" onclick="add(this,'married','marital_status')"
+                        value="no">
+                    <label class="form-check-label" for="inlineRadio2">No</label>
+                </div>
+            </div>
+            <div class="mt-3 row">
+                <label for="inputPassword" class="col-sm-2 col-form-label">
+                    <h6>Address :</h6>
+                </label>
+                <div class="col-sm-6">
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"
+                        onkeyup="add(this,'address','personal_details')"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <h3><u>Education:</u></h3>
+        <div class="row">
+            <div class="col-3">
+                <input type="text" id="Institute_Name" class="form-control" placeholder="Institute Name">
+            </div>
+            <div class="col-3">
+                <input type="text" id="Course_Name" class="form-control" placeholder="Course Name">
+            </div>
+            <div class="col-2">
+                <input type="text" id="Year" class="form-control" placeholder="Academic Year">
+            </div>
+            <div class="col-3">
+                <input type="text" id="place" class="form-control" placeholder="place">
+            </div>
+            <div class="col-1">
+                <button onclick="addMultiValue('education','Institute_Name','Course_Name','Year','place')">Add</button>
+            </div>
+        </div>
+     
+        <h3><u>Project:</u></h3>
+        <div class="row">
+            <div class="col-3">
+                <input type="text" id="company_name1" class="form-control" placeholder="Project title">
+            </div>
+            <div class="col-3">
+                <input type="text" id="project_title1" class="form-control" placeholder="Project Company">
+            </div>
+            <div class="col-2">
+                <input type="text" id="duration1" class="form-control" placeholder="Project Year">
+            </div>
+            <div class="col-3">
+                <input type="text" id="place_2" class="form-control" placeholder="Project Description">
+            </div>
+            <div class="col-1">
+                <button onclick="addMultiValue('project','company_name1','project_title1','duration1','place_2')">Add</button>
+            </div>
+        </div>
+        <h3><u>Work Experience:</u></h3>
+        <div class="row">
+            <div class="col-3">
+                <input type="text" id="Company_Name" class="form-control" placeholder="Company Name">
+            </div>
+            <div class="col-3">
+                <input type="text" id="Designation" class="form-control" placeholder="Designation">
+            </div>
+            <div class="col-2">
+                <input type="text" id="Experience" class="form-control" placeholder="Experience">
+            </div>
+            <div class="col-3">
+                <input type="text" id="place_1" class="form-control" placeholder="place">
+            </div>
+            <div class="col-1">
+                <button onclick="addMultiValue('work_experience','Company_Name','Designation','Experience','place_1')">Add</button>
+            </div>
+        </div>
+        <h3 class="certi mt-3"><u>Certification:</u></h3>
+        <div class="mt-4 row">
+            <label for="inputtext" class="col-sm-1 col-form-label">
+            </label>
+            <div class="col-3">
+                <input type="text" class="form-control" id="certi_name" placeholder="Course">
+            </div>
+            <div class="col-2">
+                <input type="text" id="certi_place" class="form-control" placeholder="Year">
+            </div>
+            <div class="col-3">
+                <input type="text" id="certi_time" class="form-control" placeholder="Duration">
+            </div>
+            <div class="col-1">
+                <button onclick="addMultiValue('certification','certi_name','certi_place','certi_time',null)">Add</button>
+            </div>
+        </div>
+    
+        <h3 class="certi mt-3"><u>Skills:</u></h3>
+        <div class="row">
+            <div class="col-3">
+                <input type="text" id="skills" class="form-control">
+            </div>
+            <button class="g btn-sm" onclick="addarrayvalue('skills')">Submit</button>
+        </div>
+        <h3 class="certi mt-3"><u>Languages Known:</u></h3>
+        <div class="row">
+            <div class="col-3">
+                <input type="text" id="languages_known" class="form-control">
+            </div>
+            <button class="g btn-sm" onclick="addarrayvalue('languages_known')">Submit</button>
+        </div>
+        <h3 class="certi mt-3"><u>Hobbies:</u></h3>
+        <div class="row">
+            <div class="col-3">
+                <input type="text" id="hobbies" class="form-control">
+            </div>
+            <button class="g btn-sm" onclick="addarrayvalue('hobbies')">Submit</button>
+        </div>
+        <h3 class="certi mt-3"><u>Personal Interest:</u></h3>
+        <div class="row">
+            <div class="col-3">
+                <input type="text" id="personal_interest" class="form-control">
+            </div>
+            <button class="g btn-sm" onclick="addarrayvalue('personal_interest')">Submit</button>
+        </div>
+        <div class="form-check mt-4 ">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+                "I hereby declare that the information provided in this resume is true and accurate to the best of my
+                knowledge".
+            </label>
+        </div>
+        <div class="d-grid gap-2 col-2 mx-auto mt-4">
+            <button type="button" class="btn btn-dark" id="submit">Submit</button>
+        </div>
+        <section>
+            <code id="output"></code>
+        </section>
+    </div>
+
+
+
+    <script type="module">
+
+        let resume = {
+            personal_details: {},
+            additional: {},
+            marital_status:{},
+            objective:[],
+            hobbies: [],
+            skills: [],
+            personal_interest:[],
+            education: [],
+            project:[],
+            work_experience: [],
+            certification:[],
+            languages_known:[],
+        }
+
+        function add(e, key, p_key) {
+            if (p_key) {
+                resume[p_key][key] = e.value
+            } else {
+                resume[key] = e.value;
+            }
+            output()
+
+        }
+        window.add = add
+
+        function addarrayvalue(key) {
+            let value = document.getElementById(key).value;
+            resume[key].push(value)
+            document.getElementById(key).value = "";
+            output()
+        }
+
+        window.addarrayvalue=addarrayvalue
+
+        function addMultiValue(p_key, key1, key2, key3, key4) {
+            if(key4){
+                let newobj = {};
+            newobj[key1] = document.getElementById(key1).value;
+            newobj[key2] = document.getElementById(key2).value;
+            newobj[key3] = document.getElementById(key3).value;
+            newobj[key4] = document.getElementById(key4).value;
+            resume[p_key].push(newobj)
+            document.getElementById(key1).value = "";
+            document.getElementById(key2).value = "";
+            document.getElementById(key3).value = "";
+            document.getElementById(key4).value = "";
+            }
+            else if(key3){
+                let newobj={};
+            newobj[key1] = document.getElementById(key1).value;
+            newobj[key2] = document.getElementById(key2).value;
+            newobj[key3] = document.getElementById(key3).value;
+            resume[p_key].push(newobj)
+            document.getElementById(key1).value = "";
+            document.getElementById(key2).value = "";
+            document.getElementById(key3).value = "";
+            }
+          
+            output()
+        
+        }
+        window.addMultiValue=addMultiValue
+
+        function output() {
+            document.getElementById('output').innerHTML = JSON.stringify(resume)
+        }
+
+
+
+
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+        import { getDatabase, ref, set, get, child } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyD3a8zlq4e9mxG2lTlBt39wG5goE8tQDVE",
+            authDomain: "resume-builder-9a31d.firebaseapp.com",
+            projectId: "resume-builder-9a31d",
+            storageBucket: "resume-builder-9a31d.firebasestorage.app",
+            messagingSenderId: "648493567848",
+            appId: "1:648493567848:web:bbe5fa907fa7c7f4bd50dd"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+
+
+        //   get ref to database services
+        const db = getDatabase(app);
+
+        document.getElementById("submit").addEventListener('click', function (e) {
+            e.preventDefault();
+            set(ref(db, 'user/' + document.getElementById("name").value),
+                {
+                    username: document.getElementById("name").value,
+                    email: document.getElementById("emailid").value,
+                    contact: document.getElementById("phone_number").value,
+                    dateofbirth: document.getElementById("dateofbirth").value,
+                    marital_status: document.getElementById("married").value,
+                    hobbies:JSON.stringify(resume.hobbies),
+                    objective: JSON.stringify(resume.objective),
+                    personal_interest: JSON.stringify(resume.personal_interest),
+                    skills: JSON.stringify(resume.skills),
+                    education: JSON.stringify(resume.education),
+                    project: JSON.stringify(resume.project),
+                    languages_known: JSON.stringify(resume.languages_known),
+                    personal_details: JSON.stringify(resume.personal_details),
+                    work_experience: JSON.stringify(resume.work_experience),
+                    certification: JSON.stringify(resume.certification),
+
+                });
+            alert("Login successful")
+        })
+    </script>
+
+</body>
+
+</html>

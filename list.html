@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+
+    <h3>Resume Builder</h3>
+    <table border="1" >
+        <thead>
+            <tr>
+                <th>s.no</th>
+                <th>name</th>
+                <th>email</th>
+                <th>edit</th>
+                <th>delete</th>
+            </tr>
+        </thead>
+        <tbody id="tbody">
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+<script type="module">
+
+    let resume = {
+        personal_details: {},
+        additional: {},
+        marital_status:{},
+        objective:[],
+        hobbies: [],
+        skills: [],
+        personal_interest:[],
+        education: [],
+        project:[],
+        work_experience: [],
+        certification:[],
+        languages_known:[],
+    }
+
+    function add(e, key, p_key) {
+        if (p_key) {
+            resume[p_key][key] = e.value
+        } else {
+            resume[key] = e.value;
+        }
+        output()
+
+    }
+    window.add = add
+
+    function addarrayvalue(key) {
+        let value = document.getElementById(key).value;
+        resume[key].push(value)
+        document.getElementById(key).value = "";
+        output()
+    }
+
+    window.addarrayvalue=addarrayvalue
+
+    function addMultiValue(p_key, key1, key2, key3, key4) {
+        if(key4){
+            let newobj = {};
+        newobj[key1] = document.getElementById(key1).value;
+        newobj[key2] = document.getElementById(key2).value;
+        newobj[key3] = document.getElementById(key3).value;
+        newobj[key4] = document.getElementById(key4).value;
+        resume[p_key].push(newobj)
+        document.getElementById(key1).value = "";
+        document.getElementById(key2).value = "";
+        document.getElementById(key3).value = "";
+        document.getElementById(key4).value = "";
+        }
+        else if(key3){
+            let newobj={};
+        newobj[key1] = document.getElementById(key1).value;
+        newobj[key2] = document.getElementById(key2).value;
+        newobj[key3] = document.getElementById(key3).value;
+        resume[p_key].push(newobj)
+        document.getElementById(key1).value = "";
+        document.getElementById(key2).value = "";
+        document.getElementById(key3).value = "";
+        }
+      
+        output()
+    
+    }
+    window.addMultiValue=addMultiValue
+
+    function output() {
+        document.getElementById('output').innerHTML = JSON.stringify(resume)
+    }
+
+
+
+
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+    import { getDatabase, ref, onValue, set, get, child } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyD3a8zlq4e9mxG2lTlBt39wG5goE8tQDVE",
+        authDomain: "resume-builder-9a31d.firebaseapp.com",
+        projectId: "resume-builder-9a31d",
+        storageBucket: "resume-builder-9a31d.firebasestorage.app",
+        messagingSenderId: "648493567848",
+        appId: "1:648493567848:web:bbe5fa907fa7c7f4bd50dd"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+
+
+    //   get ref to database services
+    const db = getDatabase(app);
+
+    const initialDbData = ref(db, 'user/');
+
+    function display(){
+        let list=[];
+        onValue(initialDbData, (snapshot) => {
+            const data = snapshot.val();
+            let userArray = Object.entries(data);
+            let trs="";
+            let index=1;
+            for(let each of userArray){
+                trs = trs + `<tr>
+                    <td>${index}</td>
+                     <td>${each[1].username}</td>
+                      <td>${each[1].email}</td>
+                      <td>${each[1].personal_details}</td>
+                       <td>${JSON.parse(each[1].personal_details).father_name}</td>
+                    </tr>`
+                    index++
+            }
+            document.getElementById("tbody").innerHTML=trs;
+        })
+        console.log(list)
+    }
+    window.displayresume = display
+    display()
+    // document.getElementById("submit").addEventListener('click', function (e) {
+    //     e.preventDefault();
+    //     set(ref(db, 'user/' + document.getElementById("name").value),
+    //         {
+    //             username: document.getElementById("name").value,
+    //             email: document.getElementById("emailid").value,
+    //             contact: document.getElementById("phone_number").value,
+    //             dateofbirth: document.getElementById("dateofbirth").value,
+    //             marital_status: document.getElementById("married").value,
+    //             hobbies:JSON.stringify(resume.hobbies),
+    //             objective: JSON.stringify(resume.objective),
+    //             personal_interest: JSON.stringify(resume.personal_interest),
+    //             skills: JSON.stringify(resume.skills),
+    //             education: JSON.stringify(resume.education),
+    //             project: JSON.stringify(resume.project),
+    //             languages_known: JSON.stringify(resume.languages_known),
+    //             personal_details: JSON.stringify(resume.personal_details),
+    //             work_experience: JSON.stringify(resume.work_experience),
+    //             certification: JSON.stringify(resume.certification),
+              
+    //         });
+    //     alert("Login successful")
+    // })
+</script>
+
+
+</html>
